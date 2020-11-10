@@ -1,7 +1,7 @@
 # CCBGpipe
 This pipeline is designed to complete circular bacterial genomes using a sampling strategy from a sinlge MinION with barcoding
 
-The pipeline in this fork is updated for newer versions of dependences such as nanopolish >v0.10 and canu > v2.0 (see the dep-list below for details). The dependences are installed manually, be aware that the docker file is not tested.
+The pipeline in this fork is updated for more recent versions of dependencies such as nanopolish > v0.10 and canu > v2.0 (see the dep-list below for details). The dependencies are installed manually, hence be aware that the updated docker file is not tested.
 
 
 **To run with Docker**
