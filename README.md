@@ -52,7 +52,7 @@ Installation
 - [Canu ~~v1.6~~ v2.1](http://canu.readthedocs.io)
 - [samtools ~~1.7~~ 1.9](http://www.htslib.org/)
 - [BWA-0.7.17](http://bio-bwa.sourceforge.net)
-- [racon ~~v1.1.1~~ 1.4.17](https://github.com/isovic/racon) -
+- [racon ~~v1.1.1~~ 1.4.17](https://github.com/isovic/racon)
 - [minimap ~~2.10~~ 2.17](https://github.com/lh3/minimap2) and [miniasm ~~v0.2~~ v0.3](https://github.com/lh3/miniasm)
 - [nanopolish ~~v0.9.0~~ v0.13.2](https://github.com/jts/nanopolish)
 - [Graphmap ~~v0.3.0~~ v0.5.2](https://github.com/isovic/graphmap)
