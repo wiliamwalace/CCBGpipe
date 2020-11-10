@@ -33,13 +33,14 @@ stdout=subprocess.getoutput(comm)
 
 
 
-comm='python /opt/nanopolish/scripts/nanopolish_makerange.py draft.fa | parallel --results nanopolish.results'+label+' -P 8 \
-nanopolish variants --methylation-aware dcm,dam --consensus plished'+label+'.{1}.fa -w {1} -r reads.fastq -b reads.sorted'+label+'.bam -g draft.fa -t 4 --min-candidate-frequency 0.1'
+comm='nanopolish_makerange.py draft.fa | parallel --results nanopolish.results'+label+' -P 8 \
+nanopolish variants --methylation-aware dcm,dam --consensus -o plished'+label+'.{1}.vcf -w {1} -r reads.fastq -b reads.sorted'+label+'.bam -g draft.fa -t 4 --min-candidate-frequency 0.1 2>&1'
 
 print (comm)
 stdout=subprocess.getoutput(comm)
+print(stdout)
 
-comm='python /opt/nanopolish/scripts/nanopolish_merge.py plished{0}.*.fa > {1}'.format(label,outfile)
+comm='nanopolish vcf2fasta -g draft.fa plished{0}.*.vcf > {1}'.format(label,outfile)
 print (comm)
 stdout=subprocess.getoutput(comm)
 

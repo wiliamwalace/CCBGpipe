@@ -1,12 +1,13 @@
 # CCBGpipe
 This pipeline is designed to complete circular bacterial genomes using a sampling strategy from a sinlge MinION with barcoding
+The pipeline in this fork is updated for newer versions of dependences such as nanopolish >v0.10 and canu > v2.0 (see the list below for details). However the dependences are installed manually, be aware that the docker file is not tested.
 
 
 **To run with Docker**
 
 Since CCBGpipe implements many analytical tools, we strongly recommend you to run it with Docker. Alternatively, you can install all dependencies as listed in the Installation section.
 
-``git clone https://github.com/jade-nhri/CCBGpipe.git``
+``git clone https://github.com/wiliamwalace/CCBGpipe.git``
 
 ``cd CCBGpipe``
 
@@ -36,7 +37,7 @@ Installation
 
 ``cd /opt``
 
-``git clone https://github.com/jade-nhri/CCBGpipe.git``
+``git clone https://github.com/wiliamwalace/CCBGpipe.git``
 
 ``cd CCBGpipe/CCBGpipe``
 
@@ -46,14 +47,15 @@ Installation
 
 ## Dependencies
 
-- [Albacore 2.1.7]
-- [Canu v1.6](http://canu.readthedocs.io)
-- [samtools 1.7](http://www.htslib.org/)
+- [~~Albacore 2.1.7~~] Guppy 4.0.14
+- [Canu ~~v1.6~~ v2.1](http://canu.readthedocs.io)
+- [samtools ~~1.7~~ 1.9](http://www.htslib.org/)
 - [BWA-0.7.17](http://bio-bwa.sourceforge.net)
-- [racon v1.1.1](https://github.com/isovic/racon) -
-- [minimap 2.10](https://github.com/lh3/minimap2) and [miniasm v0.2](https://github.com/lh3/miniasm)
-- [nanopolish v0.9.0](https://github.com/jts/nanopolish)
-- [Graphmap v0.3.0](https://github.com/isovic/graphmap)
+- [racon ~~v1.1.1~~ 1.4.17](https://github.com/isovic/racon) -
+- [minimap ~~2.10~~ 2.17](https://github.com/lh3/minimap2) and [miniasm ~~v0.2~~ v0.3](https://github.com/lh3/miniasm)
+- [nanopolish ~~v0.9.0~~ v0.13.2](https://github.com/jts/nanopolish)
+- [Graphmap ~~v0.3.0~~ v0.5.2](https://github.com/isovic/graphmap)
+- [MUMmer v3.23](https://sourceforge.net/projects/mummer)
 
 
  > Before installing these dependencies it may be required to install some

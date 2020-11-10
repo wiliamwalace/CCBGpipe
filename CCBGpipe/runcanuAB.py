@@ -11,7 +11,7 @@ comm="grep 'c_' assembly.fa | wc -l"
 Ncir=int(subprocess.getoutput(comm))
 
 genomesize=sys.argv[1]
-comm=canu+' -p canu -d canu.A genomeSize='+str(genomesize)+' -nanopore-raw readsA.fastq gnuplotTested=true'
+comm=canu+' -p canu -d canu.A genomeSize='+str(genomesize)+' -nanopore-raw readsA.fastq useGrid=false'
 print (comm)
 subprocess.run(comm, shell=True, universal_newlines=True)
 os.chdir('canu.A')
@@ -34,7 +34,7 @@ if (os.path.exists('canu.trimmedReads.fasta.gz')):
     stdout=subprocess.getoutput(comm)
 os.chdir('..')
 
-comm=canu+' -p canu -d canu.B genomeSize='+str(genomesize)+' -nanopore-raw readsB.fastq gnuplotTested=true'
+comm=canu+' -p canu -d canu.B genomeSize='+str(genomesize)+' -nanopore-raw readsB.fastq useGrid=false'
 print (comm)
 subprocess.run(comm, shell=True, universal_newlines=True)
 os.chdir('canu.B')
@@ -68,7 +68,7 @@ for x in range (1,Nrun+1):
     comm='GetSeqA.py canu.trimmedReads.fasta '+str(bases)
     print (comm)
     subprocess.getoutput(comm)
-    comm=canu+' -p canu -d canu.'+str(x)+' -assemble genomeSize='+str(genomesize)+' -nanopore-corrected subreads.fasta gnuplotTested=true'
+    comm=canu+' -p canu -d canu.'+str(x)+' -assemble genomeSize='+str(genomesize)+' -nanopore-corrected subreads.fasta useGrid=false'
     print (comm)
     subprocess.run(comm, shell=True, universal_newlines=True)
     wdir='canu.'+str(x)
@@ -112,7 +112,7 @@ if (os.path.getsize('canu.cir.fa')<0.95*os.path.getsize('assembly.fa') or Ncir>N
 #        print (comm)
 #        stdout=subprocess.getoutput(comm)
 #    os.chdir('..')
-#    
+#
 #    comm='cat canu.B/canu.correctedReads.fasta canu.A/canu.correctedReads.fasta > canu.correctedReads.fasta'
 #    subprocess.getoutput(comm)
 
@@ -129,11 +129,11 @@ if (os.path.getsize('canu.cir.fa')<0.95*os.path.getsize('assembly.fa') or Ncir>N
         print (comm)
         stdout=subprocess.getoutput(comm)
         print (stdout)
-        
+
         comm='cat assembly_con_split.fa >> subreads.fasta'
         subprocess.getoutput(comm)
- 
-        comm=canu+' -p canu -d canu.'+str(x)+' -assemble genomeSize='+str(genomesize)+' -nanopore-corrected subreads.fasta gnuplotTested=true'
+
+        comm=canu+' -p canu -d canu.'+str(x)+' -assemble genomeSize='+str(genomesize)+' -nanopore-corrected subreads.fasta useGrid=false'
         print (comm)
         subprocess.run(comm, shell=True, universal_newlines=True)
         wdir='canu.'+str(x)

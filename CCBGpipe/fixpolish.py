@@ -16,13 +16,13 @@ else:
     for i in seq:
         seqout=i.split("/")[2]
         #print (seqout)
-        comm='nanopolish variants --methylation-aware dcm,dam --consensus plished{0}.{1}.fa -w '.format(label,seqout)+'"'+'{0}.fa'.format(seqout)+'"'+' -r reads.fastq -b reads.sorted{0}.bam -g draft.fa -t 32 --min-candidate-frequency 0.1'.format(label)
+        comm='nanopolish variants --methylation-aware dcm,dam --consensus -o plished{0}.{1}.vcf -w '.format(label,seqout)+'"'+'{0}.fa'.format(seqout)+'"'+' -r reads.fastq -b reads.sorted{0}.bam -g draft.fa -t 32 --min-candidate-frequency 0.1'.format(label)
         print ('    '+comm)
         subprocess.getoutput(comm)
-    comm='python /opt/nanopolish/scripts/nanopolish_merge.py plished{0}.*.fa > {1}'.format(label,outfile)
+    comm='nanopolish vcf2fasta -g draft.fa plished{0}.*.vcf > {1}'.format(label,outfile)
     print ('    '+comm)
     subprocess.getoutput(comm)
 
 comm='rm draft.*'
-subprocess.getoutput(comm)    
+subprocess.getoutput(comm)
 

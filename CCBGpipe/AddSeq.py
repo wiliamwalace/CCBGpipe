@@ -33,7 +33,7 @@ for i in f:
         continue
     d2[header]=i
     alen.append(len(d2[header]))
-mlen=max(alen)
+mlen=max(alen) if len(alen) > 0 else 0
 print('The maximum length of original assembly: '+str(mlen))
 f.close()
 

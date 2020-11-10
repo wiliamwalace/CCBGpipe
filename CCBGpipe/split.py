@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import random, sys
-size=500000
-window=490000
+size=20000
+window=15000
 infile=sys.argv[1]
 outfile=infile.replace('.','_split.')
 d=dict()

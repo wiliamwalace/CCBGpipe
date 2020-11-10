@@ -13,16 +13,16 @@ RUN pip3 install pyfastaq
 
 ##Download CCGBpipe
 WORKDIR /opt
-RUN git clone https://github.com/jade-nhri/CCBGpipe.git
+RUN git clone https://github.com/wiliamwalace/CCBGpipe.git
 WORKDIR /opt/CCBGpipe/CCBGpipe
 RUN chmod +x *.py
 
-#albacore 2.1.7
+#guppy 4.0.14
 #This software requires the user to download manually!!!
 
 
-#samtools 1.7
-ADD https://github.com/samtools/samtools/releases/download/1.7/samtools-1.7.tar.bz2 /opt
+#samtools 1.9
+ADD https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 /opt
 RUN apt-get update && apt-get install -y \
     libncurses-dev \
     apt-file \
@@ -31,8 +31,8 @@ RUN apt-get update && apt-get install -y \
     libbz2-dev \
     vim parallel
 WORKDIR /opt
-RUN tar -xjf /opt/samtools-1.7.tar.bz2
-WORKDIR /opt/samtools-1.7
+RUN tar -xjf /opt/samtools-1.9.tar.bz2
+WORKDIR /opt/samtools-1.9
 RUN make && make install
 WORKDIR /
 
@@ -43,20 +43,20 @@ WORKDIR /opt/bwa
 RUN make
 WORKDIR /
 
-#nanopolish v0.9.0
+#nanopolish v0.13.2
 RUN apt-get update && apt-get install -y python-pip python-dev python-biopython build-essential python-matplotlib
 WORKDIR /opt
 RUN git clone --recursive https://github.com/jts/nanopolish.git
 WORKDIR /opt/nanopolish
-RUN git checkout v0.9.0
+RUN git checkout v0.13.2
 RUN make
 WORKDIR /
 
-#canu v1.6
+#canu v2.1
 WORKDIR /opt
-RUN wget https://github.com/marbl/canu/archive/v1.6.tar.gz
-RUN gunzip -dc v1.6.tar.gz | tar -xf -
-WORKDIR /opt/canu-1.6/src
+RUN wget https://github.com/marbl/canu/archive/v2.1.tar.gz
+RUN gunzip -dc v2.1.tar.gz | tar -xf -
+WORKDIR /opt/canu-2.1/src
 RUN make -j 16
 WORKDIR /
 
@@ -71,23 +71,23 @@ WORKDIR /
 
 #Minimap2, miniasm-0.2
 WORKDIR /opt
-RUN curl -L https://github.com/lh3/minimap2/releases/download/v2.10/minimap2-2.10_x64-linux.tar.bz2  | tar -jxvf -
-RUN wget https://github.com/lh3/miniasm/archive/v0.2.tar.gz \
-    && tar -xzf v0.2.tar.gz \
-    && (cd /opt/miniasm-0.2 && make) \
-    && rm v0.2.tar.gz
+RUN curl -L https://github.com/lh3/minimap2/releases/download/v2.17/minimap2-2.17_x64-linux.tar.bz2  | tar -jxvf -
+RUN wget https://github.com/lh3/miniasm/archive/v0.3.tar.gz \
+    && tar -xzf v0.3.tar.gz \
+    && (cd /opt/miniasm-0.3 && make) \
+    && rm v0.3.tar.gz
 WORKDIR /
 
-#Racon1.1.1
+#Racon1.4.17
 WORKDIR /opt
-RUN wget https://github.com/isovic/racon/releases/download/1.1.1/racon-v1.1.1.tar.gz \
-    && tar -xzf racon-v1.1.1.tar.gz \
-    && (cd /opt/racon-v1.1.1 && cmake -DCMAKE_BUILD_TYPE=Release && make) \
-    && rm racon-v1.1.1.tar.gz
+RUN wget https://github.com/isovic/racon/releases/download/1.4.17/racon-v1.4.17.tar.gz \
+    && tar -xzf racon-v1.4.17.tar.gz \
+    && (cd /opt/racon-v1.4.17 && cmake -DCMAKE_BUILD_TYPE=Release && make) \
+    && rm racon-v1.4.17.tar.gz
 WORKDIR /
 
 
-#Graphmap v0.3.0
+#Graphmap v0.5.2
 WORKDIR /opt
 RUN git clone https://github.com/isovic/graphmap.git
 WORKDIR /opt/graphmap
@@ -95,4 +95,4 @@ RUN make modules && make
 WORKDIR /
 
 #set path
-ENV PATH $PATH:/opt:/opt/CCBGpipe/CCBGpipe:/opt/samtools-1.7/bin:/opt/bwa:/opt/nanopolish:/opt/canu-1.6/Linux-amd64/bin:/opt/MUMmer3.23:/opt/minimap2-2.10_x64-linux/:/opt/miniasm-0.2:/opt/racon-v1.1.1/bin:/opt/graphmap/bin/Linux-x64
+ENV PATH $PATH:/opt:/opt/CCBGpipe/CCBGpipe:/opt/samtools-1.9/bin:/opt/bwa:/opt/nanopolish:/opt/nanopolish/scripts:/opt/canu-2.1/Linux-amd64/bin:/opt/MUMmer3.23:/opt/minimap2-2.17_x64-linux/:/opt/miniasm-0.3:/opt/racon-v1.4.17/bin:/opt/graphmap/bin/Linux-x64

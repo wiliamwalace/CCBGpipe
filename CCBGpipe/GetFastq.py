@@ -70,7 +70,7 @@ sumbasesL=fdfL['sequence_length_template'].cumsum()
 lineidx1=0
 for i in sumbasesL.index:
     lineidx1+=1
-    total1=int(sumbasesL.ix[i])
+    total1=int(sumbasesL.loc[i])
     #print (total)
     if total1 > mintotal*1/2:
         tempi=i
@@ -94,7 +94,7 @@ for ID in set1['read_id']:
 fw.close()
 
 
-#To sort by quality 
+#To sort by quality
 #fdfS=set1left[set1left['sequence_length_template']>=minseqlen]
 fdfS=set1left[set1left['sequence_length_template']>=Lcutvalue]
 fdfS=fdfS.sort_values(['mean_qscore_template'], ascending=False)
@@ -105,7 +105,7 @@ sumbasesS=fdfS['sequence_length_template'].cumsum()
 lineidx2=0
 for i in sumbasesS.index:
     lineidx2+=1
-    total2=int(sumbasesS.ix[i])
+    total2=int(sumbasesS.loc[i])
     #print (total)
     if total2 > mintotal-total1:
         break
